@@ -1,4 +1,4 @@
-# clapp_android
+# Clapp Android
 **Has this ever happened to you:**
 
 You are at a concert, and people are clapping. 
