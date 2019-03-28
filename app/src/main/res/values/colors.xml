@@ -21,4 +21,5 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="white">#fff</color>
 </resources>

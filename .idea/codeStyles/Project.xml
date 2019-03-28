@@ -18,7 +18,6 @@
       <option name="OTHER_SETTINGS">
         <value>
           <option name="WRAP_ATTRIBUTES" value="0" />
-          <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
           <option name="INSERT_LINE_BREAK_AFTER_LAST_ATTRIBUTE" value="true" />
         </value>
       </option>
