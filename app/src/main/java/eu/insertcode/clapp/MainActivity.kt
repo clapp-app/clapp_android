@@ -21,6 +21,9 @@ import android.content.Context
 import android.os.*
 import android.view.MotionEvent
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.ScaleAnimation
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -56,10 +59,28 @@ class MainActivity : AppCompatActivity() {
                     vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
                 else vibrator.vibrate(50)
                 ClapSoundManager.playClap()
+                button_clap.startAnimation(scaleAnimation)
 
-                handler?.postDelayed(r, 255)
+                handler?.postDelayed(r, 200)
             }
         })
 
+    }
+
+    val scaleAnimation = AnimationSet(true).apply {
+        val fromScale = 1f
+        val toScale = 2f
+        val growAnimation = ScaleAnimation(
+                fromScale, toScale, fromScale, toScale,
+                Animation.RELATIVE_TO_SELF, .5f, Animation.RELATIVE_TO_SELF, .5f
+        )
+        val shrinkAnimation = ScaleAnimation(
+                toScale, fromScale, toScale, fromScale,
+                Animation.RELATIVE_TO_SELF, .5f, Animation.RELATIVE_TO_SELF, .5f
+        )
+
+        addAnimation(growAnimation)
+        addAnimation(shrinkAnimation)
+        duration = 200
     }
 }
