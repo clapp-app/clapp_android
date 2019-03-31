@@ -101,6 +101,10 @@ class MainActivity : AppCompatActivity() {
                     clappAppInstance.setCurrentTheme(R.style.AppTheme_Dark)
                     recreate()
                 }
+                R.id.menu_theme_black -> true.also {
+                    clappAppInstance.setCurrentTheme(R.style.AppTheme_Black)
+                    recreate()
+                }
                 R.id.menu_theme_light -> true.also {
                     clappAppInstance.setCurrentTheme(R.style.AppTheme_Light)
                     recreate()

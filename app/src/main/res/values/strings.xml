@@ -19,4 +19,5 @@
     <string name="str_tap_to_clap">Tap or hold to clap!</string>
     <string name="menu_light">Light mode</string>
     <string name="menu_dark">Dark mode</string>
+    <string name="menu_black">Black mode</string>
 </resources>

@@ -31,4 +31,10 @@
         android:title="@string/menu_dark"
         app:showAsAction="never"
         />
+
+    <item
+        android:id="@+id/menu_theme_black"
+        android:title="@string/menu_black"
+        app:showAsAction="never"
+        />
 </menu>
