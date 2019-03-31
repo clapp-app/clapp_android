@@ -16,18 +16,25 @@
 
 package eu.insertcode.clapp
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import android.app.Application
 
-class MainActivity : AppCompatActivity() {
+/**
+ * Created by maartendegoede on 2019-03-31.
+ * Copyright © 2019 insertCode.eu. All rights reserved.
+ */
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+lateinit var clappAppInstance: Application
 
-        button_clap.setOnClickListener {
-            ClapSoundManager.playClap()
-        }
+@Suppress("unused")
+class ClappApp : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        clappAppInstance = this
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        ClapSoundManager.terminate()
     }
 }
