@@ -21,6 +21,7 @@
     package="eu.insertcode.clapp"
     >
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -36,7 +37,22 @@
         <activity
             android:name=".MainActivity"
             android:label=""
-            />
+            >
+            <tools:validation testUrl="https://clapp-app.github.io/clapp_web/" />
+            <tools:validation testUrl="https://clapp-app.github.io" />
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="clapp-app.github.io"
+                    android:scheme="https"
+                    />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"

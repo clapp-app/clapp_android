@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "676240839999",
+    "firebase_url": "https://clapp-app-89efc.firebaseio.com",
+    "project_id": "clapp-app-89efc",
+    "storage_bucket": "clapp-app-89efc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676240839999:android:9710950f8c742a9b",
+        "android_client_info": {
+          "package_name": "eu.insertcode.clapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676240839999-vmpja9u564qe7mkd8jos24nqcua59vnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBItKMYGkuM_xrh8T7WWI8QEgASvnS2ISM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
