@@ -17,10 +17,18 @@
 package eu.insertcode.clapp
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.renderscript.Allocation
+import android.renderscript.Element
+import android.renderscript.RenderScript
+import android.renderscript.ScriptIntrinsicBlur
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_onboarding.*
+
 
 class OnBoardingActivity : AppCompatActivity() {
 
@@ -37,5 +45,27 @@ class OnBoardingActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+
+        background.setImageBitmap(blurRenderScript(BitmapFactory.decodeResource(resources, R.drawable.clapp_banner)))
+    }
+
+    private fun blurRenderScript(smallBitmap: Bitmap): Bitmap {
+        if (Build.VERSION.SDK_INT < 17) return smallBitmap
+
+        val output = Bitmap.createBitmap(smallBitmap.width, smallBitmap.height, Bitmap.Config.ARGB_8888)
+
+        val renderScript = RenderScript.create(this)
+        val script = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
+        val outAlloc = Allocation.createFromBitmap(renderScript, output)
+        script.apply {
+            setRadius(2f)
+            setInput(Allocation.createFromBitmap(renderScript, smallBitmap, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_GRAPHICS_TEXTURE))
+            forEach(outAlloc)
+        }
+        outAlloc.copyTo(output)
+
+        renderScript.destroy()
+
+        return output
     }
 }
