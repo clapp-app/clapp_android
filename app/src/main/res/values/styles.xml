@@ -40,8 +40,8 @@
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
 
-        <item name="colorAccent">@color/colorSecondary</item>
-        <item name="colorPrimaryDark">@color/colorSecondary</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
     </style>
 
     <style name="AppTheme.Black" parent="Theme.MaterialComponents.NoActionBar">
@@ -50,12 +50,13 @@
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
 
 
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorSecondary">#ff3C3C3C</item>
+        <item name="colorSecondaryVariant">#ff3C3C3C</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
 
-        <item name="colorAccent">#000</item>
-        <item name="colorPrimaryDark">#000</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -63,5 +64,4 @@
 
         <item name="android:windowIsTranslucent">true</item>
     </style>
-
 </resources>
