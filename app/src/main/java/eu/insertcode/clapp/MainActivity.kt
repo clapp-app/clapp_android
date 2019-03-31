@@ -27,6 +27,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.view.animation.ScaleAnimation
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -66,7 +67,12 @@ class MainActivity : AppCompatActivity() {
                 ClapSoundManager.playClap()
                 button_clap.startAnimation(scaleAnimation)
 
-                handler?.postDelayed(r, 200)
+                if (lifecycle.currentState == Lifecycle.State.RESUMED) {
+                    handler?.postDelayed(r, 200)
+                } else {
+                    handler?.removeCallbacks(r)
+                    handler = null
+                }
             }
         })
 
