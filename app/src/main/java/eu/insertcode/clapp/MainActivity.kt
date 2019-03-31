@@ -16,17 +16,26 @@
 
 package eu.insertcode.clapp
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
+    private val vibrator by lazy { this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         button_clap.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= 26)
+                vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
+            else vibrator.vibrate(50)
             ClapSoundManager.playClap()
         }
     }

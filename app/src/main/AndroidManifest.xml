@@ -21,6 +21,8 @@
     package="eu.insertcode.clapp"
     >
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".ClappApp"
         android:allowBackup="true"
