@@ -16,7 +16,5 @@ All you have to do is simply grab your phone, unlock it, open Clapp, turn up the
 
 # Todo: 
 - mention open source usage
-- Add onboarding
 - Share app button
 - privacy policy
-- fix continue clapping on close issue
