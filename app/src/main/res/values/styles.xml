@@ -27,7 +27,7 @@
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
 
         <item name="colorAccent">@color/colorSecondary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryVariant</item>
+        <item name="colorPrimaryDark">@color/colorSecondary</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">

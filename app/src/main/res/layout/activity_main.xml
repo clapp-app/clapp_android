@@ -27,7 +27,7 @@
     <eu.insertcode.clapp.widgets.CircleTextView
         android:id="@+id/clapp_text"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:gravity="center"
@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:startColor="@color/colorSecondary"
         app:text="@string/str_tap_to_clap"
-        app:textRadius="90"
+        app:textRadius="45"
         />
 
     <ImageView

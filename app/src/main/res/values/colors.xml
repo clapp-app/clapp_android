@@ -18,7 +18,7 @@
 <resources>
     <!-- Main colours -->
     <color name="colorPrimary">#ffdd67</color>
-    <color name="colorPrimaryVariant">#eba352</color>
+    <color name="colorPrimaryVariant">#c5b044</color>
     <color name="colorOnPrimary">#88000000</color>
 
     <color name="colorSecondary">#42ade2</color>
