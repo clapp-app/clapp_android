@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~    Copyright 2019 Maarten de Goede
   ~
@@ -15,6 +16,12 @@
   -->
 
 <resources>
-    <string name="app_name">Clapp</string>
-    <string name="str_tap_to_clap">Tap to clap!</string>
+    <declare-styleable name="CircleTextView">
+        <attr name="startColor" format="color" />
+        <attr name="endColor" format="color" />
+
+        <attr name="textSize" format="dimension" />
+        <attr name="textRadius" format="integer" />
+        <attr name="text" format="string" />
+    </declare-styleable>
 </resources>
