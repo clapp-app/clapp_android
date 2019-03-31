@@ -19,6 +19,8 @@ package eu.insertcode.clapp
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.*
+import android.view.Menu
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.Animation
@@ -32,8 +34,11 @@ class MainActivity : AppCompatActivity() {
     private val vibrator by lazy { this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(clappAppInstance.themeId)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
+
 
         button_clap.setOnTouchListener(object : View.OnTouchListener {
             private var handler: Handler? = null
@@ -83,4 +88,23 @@ class MainActivity : AppCompatActivity() {
         addAnimation(shrinkAnimation)
         duration = 200
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        toolbar.inflateMenu(R.menu.menu_style)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) =
+            when (item.itemId) {
+                R.id.menu_theme_dark -> true.also {
+                    clappAppInstance.setCurrentTheme(R.style.AppTheme_Dark)
+                    recreate()
+                }
+                R.id.menu_theme_light -> true.also {
+                    clappAppInstance.setCurrentTheme(R.style.AppTheme_Light)
+                    recreate()
+                }
+                else -> super.onOptionsItemSelected(item)
+            }
 }

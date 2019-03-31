@@ -24,6 +24,14 @@
     tools:context=".MainActivity"
     >
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Widget.MaterialComponents.ActionBar.Solid"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <eu.insertcode.clapp.widgets.CircleTextView
         android:id="@+id/clapp_text"
         android:layout_width="match_parent"

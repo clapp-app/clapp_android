@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~    Copyright 2019 Maarten de Goede
   ~
@@ -14,9 +15,20 @@
   ~    limitations under the License.
   -->
 
-<resources>
-    <string name="app_name">Clapp</string>
-    <string name="str_tap_to_clap">Tap or hold to clap!</string>
-    <string name="menu_light">Light mode</string>
-    <string name="menu_dark">Dark mode</string>
-</resources>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/menu_theme_light"
+        android:title="@string/menu_light"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/menu_theme_dark"
+        android:title="@string/menu_dark"
+        app:showAsAction="never"
+        />
+</menu>

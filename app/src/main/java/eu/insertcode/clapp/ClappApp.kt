@@ -17,19 +17,34 @@
 package eu.insertcode.clapp
 
 import android.app.Application
+import android.preference.PreferenceManager
+import androidx.annotation.StyleRes
+
 
 /**
  * Created by maartendegoede on 2019-03-31.
  * Copyright © 2019 insertCode.eu. All rights reserved.
  */
 
-lateinit var clappAppInstance: Application
+lateinit var clappAppInstance: ClappApp
 
 @Suppress("unused")
 class ClappApp : Application() {
+    var themeId = R.style.AppTheme_Light
+
+    fun setCurrentTheme(@StyleRes theme: Int) {
+        themeId = theme
+        setTheme(themeId)
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .edit()
+                .putInt("defaultTheme", theme)
+                .apply()
+    }
 
     override fun onCreate() {
         super.onCreate()
+        themeId = PreferenceManager.getDefaultSharedPreferences(this).getInt("defaultTheme", R.style.AppTheme_Light)
+        setTheme(themeId)
         clappAppInstance = this
     }
 
