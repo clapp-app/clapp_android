@@ -20,15 +20,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_onboarding.*
 
-class SplashActivity : AppCompatActivity() {
+class OnBoardingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_onboarding)
 
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hasShownOnboarding", false))
+        button_start.setOnClickListener {
+            PreferenceManager.getDefaultSharedPreferences(this)
+                    .edit()
+                    .putBoolean("hasShownOnboarding", true)
+                    .apply()
+
             startActivity(Intent(this, MainActivity::class.java))
-        else startActivity(Intent(this, OnBoardingActivity::class.java))
-        finish()
+            finish()
+        }
     }
 }
