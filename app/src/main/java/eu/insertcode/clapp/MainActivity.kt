@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
-        button_clap.setOnTouchListener(object : View.OnTouchListener {
+        root.setOnTouchListener(object : View.OnTouchListener {
             private var handler: Handler? = null
             private val r = Runnable { clap() }
 
