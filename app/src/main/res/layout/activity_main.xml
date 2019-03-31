@@ -15,18 +15,12 @@
   ~    limitations under the License.
   -->
 
-<resources>
-    <!-- Main colours -->
-    <color name="colorPrimary">#ffdd67</color>
-    <color name="colorPrimaryVariant">#eba352</color>
-    <color name="colorOnPrimary">#88000000</color>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
 
-    <color name="colorSecondary">#42ade2</color>
-    <color name="colorSecondaryVariant">#42ade2</color>
-    <color name="colorOnSecondary">#88000000</color>
-
-    <color name="ic_launcher_background">@color/white</color>
-
-    <!-- Other -->
-    <color name="white">#fff</color>
-</resources>
+</androidx.constraintlayout.widget.ConstraintLayout>
