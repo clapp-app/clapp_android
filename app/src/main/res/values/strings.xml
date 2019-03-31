@@ -16,5 +16,5 @@
 
 <resources>
     <string name="app_name">Clapp</string>
-    <string name="str_tap_to_clap">Tap to clap!</string>
+    <string name="str_tap_to_clap">Tap or hold to clap!</string>
 </resources>

@@ -16,11 +16,11 @@
 
 package eu.insertcode.clapp
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
-import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
+import android.os.*
+import android.view.MotionEvent
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -32,11 +32,34 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button_clap.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= 26)
-                vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
-            else vibrator.vibrate(50)
-            ClapSoundManager.playClap()
-        }
+        button_clap.setOnTouchListener(object : View.OnTouchListener {
+            private var handler: Handler? = null
+            private val r = Runnable { clap() }
+
+            @SuppressLint("ClickableViewAccessibility")
+            override fun onTouch(v: View, event: MotionEvent): Boolean {
+                return when (event.action) {
+                    MotionEvent.ACTION_DOWN -> true.also {
+                        handler = handler ?: Handler().apply { post(r) }
+                    }
+                    MotionEvent.ACTION_UP -> true.also {
+                        handler?.removeCallbacks(r)
+                        handler = null
+                    }
+                    else -> false
+                }
+            }
+
+            @Suppress("DEPRECATION")
+            fun clap() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
+                else vibrator.vibrate(50)
+                ClapSoundManager.playClap()
+
+                handler?.postDelayed(r, 255)
+            }
+        })
+
     }
 }
