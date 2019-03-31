@@ -18,12 +18,12 @@ All you have to do is simply grab your phone, unlock it, open Clapp, turn up the
 Clapp only collects anonymous crash and performance information to improve the app.
 
 # Copyright notice
-Used copyrighted materials:
-**EmojiOne 1F44F**
-Description: A colored Emoji from emojione project
-Source	https://github.com/emojione/emojione/tree/2.2.7
-Author	https://github.com/emojione/emojione/graphs/contributors
-Licence https://creativecommons.org/licenses/by-sa/4.0/deed.en
+Used copyrighted materials:  
+**EmojiOne 1F44F**  
+Description: A colored Emoji from emojione project  
+Source	https://github.com/emojione/emojione/tree/2.2.7  
+Author	https://github.com/emojione/emojione/graphs/contributors  
+Licence https://creativecommons.org/licenses/by-sa/4.0/deed.en  
 
 # Todo: 
 - Share app button
