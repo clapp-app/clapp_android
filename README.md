@@ -8,6 +8,8 @@ No more! With Clapp, you can clap with only one hand!
 All you have to do is simply grab your phone, unlock it, open Clapp, turn up the volume and tap a button! 
 **Clapping has never been this easy!**
 
+[Try it out yourself!](https://play.google.com/store/apps/details?id=eu.insertcode.clapp)
+
 # Features:
 - Tap or hold to clap! 👏
 - Dark mode! 🌚
