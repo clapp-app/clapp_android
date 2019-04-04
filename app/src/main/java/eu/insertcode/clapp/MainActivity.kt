@@ -18,6 +18,7 @@ package eu.insertcode.clapp
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.media.AudioManager
 import android.os.*
 import android.view.Menu
 import android.view.MenuItem
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        volumeControlStream = AudioManager.STREAM_MUSIC
 
         root.setOnTouchListener(object : View.OnTouchListener {
             private var handler: Handler? = null
