@@ -17,9 +17,12 @@
 
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
     package="eu.insertcode.clapp"
     >
+
+    <dist:module dist:instant="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -30,17 +33,27 @@
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Light"
-        tools:ignore="GoogleAppIndexingWarning"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         >
         <activity android:name=".OnBoardingActivity" />
         <activity
             android:name=".MainActivity"
             android:label=""
+            />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
             >
             <tools:validation testUrl="https://clapp-app.github.io/clapp_web/" />
             <tools:validation testUrl="https://clapp-app.github.io" />
+
+            <meta-data
+                android:name="default-url"
+                android:value="https://clapp-app.github.io"
+                />
 
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -48,16 +61,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="clapp-app.github.io"
-                    android:scheme="https"
-                    />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="clapp-app.github.io" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"
-            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
