@@ -16,7 +16,9 @@
 
 package eu.insertcode.clapp
 
-import android.media.MediaPlayer
+import android.media.AudioManager
+import android.media.SoundPool
+
 
 /**
  * Created by maartendegoede on 2019-03-31.
@@ -48,14 +50,25 @@ object ClapSoundManager {
             R.raw.clapp61
     )
 
-    private val playableClaps = claps.map { MediaPlayer.create(clappAppInstance, it) }
+    private val playableClaps = arrayListOf<Int>()
+    private val soundPool = SoundPool(30, AudioManager.STREAM_SYSTEM, 100).apply {
+        claps.forEach { playableClaps.add(load(clappAppInstance, it, 1)) }
+    }
 
+    fun init() {}
 
     fun terminate() {
-        playableClaps.forEach { it.release() }
+        soundPool.release()
     }
 
     fun playClap() {
-        playableClaps.random().start()
+        soundPool.play(
+                playableClaps.random(),
+                1f, // normal leftVolume
+                1f, // normal rightVolume
+                1, // priority
+                0, // no loop
+                1f // normal playback rate
+        )
     }
 }

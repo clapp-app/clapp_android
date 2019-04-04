@@ -46,6 +46,7 @@ class ClappApp : Application() {
         themeId = PreferenceManager.getDefaultSharedPreferences(this).getInt("defaultTheme", R.style.AppTheme_Light)
         setTheme(themeId)
         clappAppInstance = this
+        ClapSoundManager.init()
     }
 
     override fun onTerminate() {
