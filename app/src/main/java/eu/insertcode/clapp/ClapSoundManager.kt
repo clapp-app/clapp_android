@@ -16,6 +16,7 @@
 
 package eu.insertcode.clapp
 
+import android.content.Context
 import android.media.AudioManager
 import android.media.SoundPool
 
@@ -51,7 +52,8 @@ object ClapSoundManager {
     )
 
     private val playableClaps = arrayListOf<Int>()
-    private val soundPool = SoundPool(30, AudioManager.STREAM_SYSTEM, 100).apply {
+    private val audioManager = clappAppInstance.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    private val soundPool = SoundPool(30, AudioManager.STREAM_MUSIC, 100).apply {
         claps.forEach { playableClaps.add(load(clappAppInstance, it, 1)) }
     }
 
@@ -62,6 +64,11 @@ object ClapSoundManager {
     }
 
     fun playClap() {
+        if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0) {
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+                    audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC),
+                    AudioManager.FLAG_SHOW_UI)
+        }
         soundPool.play(
                 playableClaps.random(),
                 1f, // normal leftVolume
