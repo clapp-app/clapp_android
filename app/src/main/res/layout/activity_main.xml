@@ -39,9 +39,10 @@
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="182dp"
         android:gravity="center"
         app:endColor="@color/colorPrimaryVariant"
-        app:layout_constraintBottom_toTopOf="@id/button_clap"
+        app:layout_constraintBottom_toBottomOf="@id/button_clap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:startColor="@color/colorSecondary"
@@ -51,8 +52,8 @@
 
     <ImageView
         android:id="@+id/button_clap"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
         android:scaleType="center"
         android:src="@drawable/ic_clapp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,6 +61,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription"
+        />
+
+    <TextView
+        android:id="@+id/seekbar_text"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/str_clap_speed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <!-- min = -800, max = -100, progress = -200, at least that's the case when the value is used. -->
+    <!-- android:min is not supported pre 26, so the max is 700 and in code I do: -->
+    <!-- (progress-max)*-1+min -->
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:max="700"
+        android:progress="600"
+        app:layout_constraintBottom_toBottomOf="@id/seekbar_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/seekbar_text"
+        app:tickMarkTint="@color/colorSecondary"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

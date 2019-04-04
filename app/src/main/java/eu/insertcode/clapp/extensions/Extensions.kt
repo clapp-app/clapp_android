@@ -18,6 +18,7 @@ package eu.insertcode.clapp.extensions
 
 import android.graphics.drawable.Drawable
 import android.view.Menu
+import android.widget.SeekBar
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -42,3 +43,16 @@ fun Menu.tintMenuItemsCompat() {
 
 fun Drawable.setTintCompat(@ColorRes tint: Int) = DrawableCompat.setTint(this, getColorCompat(tint))
 fun getColorCompat(@ColorRes color: Int) = ContextCompat.getColor(clappAppInstance, color)
+
+
+open class SimpleOnSeekBarChangeListener : SeekBar.OnSeekBarChangeListener {
+    override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+    }
+
+    override fun onStartTrackingTouch(seekBar: SeekBar) {
+    }
+
+    override fun onStopTrackingTouch(seekBar: SeekBar) {
+    }
+
+}

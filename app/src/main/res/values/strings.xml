@@ -29,6 +29,7 @@
         \n
         Clapping has never been this easy!
     </string>
+    <string name="str_clap_speed">Clap speed:</string>
 
     <!-- Menu -->
     <string name="menu_light">Light mode</string>

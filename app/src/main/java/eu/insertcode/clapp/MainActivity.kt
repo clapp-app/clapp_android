@@ -19,6 +19,7 @@ package eu.insertcode.clapp
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.media.AudioManager
 import android.os.*
 import android.view.Menu
@@ -28,14 +29,19 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.view.animation.ScaleAnimation
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
+import eu.insertcode.clapp.extensions.SimpleOnSeekBarChangeListener
+import eu.insertcode.clapp.extensions.getColorCompat
 import eu.insertcode.clapp.extensions.tintMenuItemsCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
     private val vibrator by lazy { this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator }
+
+    private var clapSpeed = 200L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(clappAppInstance.themeId)
@@ -45,7 +51,16 @@ class MainActivity : AppCompatActivity() {
 
         volumeControlStream = AudioManager.STREAM_MUSIC
 
-        root.setOnTouchListener(object : View.OnTouchListener {
+        seekbar.progressDrawable.setColorFilter(getColorCompat(R.color.colorSecondary), PorterDuff.Mode.SRC_IN)
+        seekbar.thumb.setColorFilter(getColorCompat(R.color.colorSecondary), PorterDuff.Mode.SRC_IN)
+        seekbar.setOnSeekBarChangeListener(object : SimpleOnSeekBarChangeListener() {
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                // (progress-max)*-1+min, calculation explained in view
+                clapSpeed = ((progress - seekbar.max) * -1 + 100).toLong()
+            }
+        })
+
+        button_clap.setOnTouchListener(object : View.OnTouchListener {
             private var handler: Handler? = null
             private val r = Runnable { clap() }
 
@@ -69,10 +84,10 @@ class MainActivity : AppCompatActivity() {
                     vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
                 else vibrator.vibrate(50)
                 ClapSoundManager.playClap()
-                button_clap.startAnimation(scaleAnimation)
+                button_clap.startAnimation(scaleAnimation.apply { duration = clapSpeed })
 
                 if (lifecycle.currentState == Lifecycle.State.RESUMED) {
-                    handler?.postDelayed(r, 200)
+                    handler?.postDelayed(r, clapSpeed)
                 } else {
                     handler?.removeCallbacks(r)
                     handler = null
@@ -96,7 +111,6 @@ class MainActivity : AppCompatActivity() {
 
         addAnimation(growAnimation)
         addAnimation(shrinkAnimation)
-        duration = 200
     }
 
 
