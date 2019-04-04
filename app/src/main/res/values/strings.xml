@@ -16,11 +16,26 @@
 
 <resources>
     <string name="app_name">Clapp</string>
+
+    <!-- Strings -->
     <string name="str_tap_to_clap">Tap or hold to clap!</string>
+    <string name="str_share">%1$s \n\nhttps://clapp.page.link/download</string>
+    <string name="str_onboarding_title">Has this ever happened to you:</string>
+    <string name="str_onboarding_description">
+        You are at a concert, and people are clapping. \n
+        However, you have a drink in your hand so you only have one hand free, and you can\'t clap properly.  \n
+        \n
+        No more! With Clapp, you can clap with only one hand! All you have to do is simply grab your phone, unlock it, open Clapp, turn up the volume and tap a button! \n
+        \n
+        Clapping has never been this easy!
+    </string>
+
+    <!-- Menu -->
     <string name="menu_light">Light mode</string>
     <string name="menu_dark">Dark mode</string>
     <string name="menu_black">Black mode</string>
-    <string name="str_onboarding_title">Has this ever happened to you:</string>
-    <string name="str_onboarding_description">You are at a concert, and people are clapping. \nHowever, you have a drink in your hand so you only have one hand free, and you can\'t clap properly.  \n\nNo more! With Clapp, you can clap with only one hand! All you have to do is simply grab your phone, unlock it, open Clapp, turn up the volume and tap a button! \n\nClapping has never been this easy!</string>
+    <string name="menu_share">Share</string>
+
+    <!-- Actions -->
     <string name="action_start_clapping">Start clapping</string>
 </resources>

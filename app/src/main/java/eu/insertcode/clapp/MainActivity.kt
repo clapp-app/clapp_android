@@ -18,6 +18,7 @@ package eu.insertcode.clapp
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.media.AudioManager
 import android.os.*
 import android.view.Menu
@@ -29,6 +30,7 @@ import android.view.animation.AnimationSet
 import android.view.animation.ScaleAnimation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
+import eu.insertcode.clapp.extensions.tintMenuItemsCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -98,23 +100,30 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        toolbar.inflateMenu(R.menu.menu_style)
-        return true
+    override fun onCreateOptionsMenu(menu: Menu) = true.also {
+        menuInflater.inflate(R.menu.menu_style, menu)
+        menu.tintMenuItemsCompat()
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
             when (item.itemId) {
+                R.id.menu_share -> true.also {
+                    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                        putExtra(Intent.EXTRA_TEXT, getString(R.string.str_share, getString(R.string.str_onboarding_description)))
+                        type = "text/plain"
+                    }
+                    startActivity(Intent.createChooser(shareIntent, getString(R.string.menu_share)))
+                }
                 R.id.menu_theme_dark -> true.also {
-                    clappAppInstance.setCurrentTheme(R.style.AppTheme_Dark)
+                    clappAppInstance.setCurrentTheme(R.style.AppTheme_Dark, true)
                     recreate()
                 }
                 R.id.menu_theme_black -> true.also {
-                    clappAppInstance.setCurrentTheme(R.style.AppTheme_Black)
+                    clappAppInstance.setCurrentTheme(R.style.AppTheme_Black, true)
                     recreate()
                 }
                 R.id.menu_theme_light -> true.also {
-                    clappAppInstance.setCurrentTheme(R.style.AppTheme_Light)
+                    clappAppInstance.setCurrentTheme(R.style.AppTheme_Light, false)
                     recreate()
                 }
                 else -> super.onOptionsItemSelected(item)

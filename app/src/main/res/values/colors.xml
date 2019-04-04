@@ -27,6 +27,9 @@
 
     <color name="ic_launcher_background">@color/white</color>
 
+    <color name="colorOnSurface">#8000</color>
+    <color name="colorOnSurfaceDark">#bfff</color>
+
     <!-- Other -->
     <color name="white">#fff</color>
     <color name="black">#000</color>

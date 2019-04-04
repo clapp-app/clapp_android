@@ -28,23 +28,28 @@ import androidx.annotation.StyleRes
 
 lateinit var clappAppInstance: ClappApp
 
-@Suppress("unused")
 class ClappApp : Application() {
     var themeId = R.style.AppTheme_Light
+    var isDarkTheme = false
 
-    fun setCurrentTheme(@StyleRes theme: Int) {
+    fun setCurrentTheme(@StyleRes theme: Int, isDark: Boolean) {
         themeId = theme
+        isDarkTheme = isDark
         setTheme(themeId)
         PreferenceManager.getDefaultSharedPreferences(this)
                 .edit()
                 .putInt("defaultTheme", theme)
+                .putBoolean("isDarkTheme", isDark)
                 .apply()
     }
 
     override fun onCreate() {
         super.onCreate()
-        themeId = PreferenceManager.getDefaultSharedPreferences(this).getInt("defaultTheme", R.style.AppTheme_Light)
-        setTheme(themeId)
+        PreferenceManager.getDefaultSharedPreferences(this).apply {
+            themeId = getInt("defaultTheme", themeId)
+            isDarkTheme = getBoolean("isDarkTheme", isDarkTheme)
+            setTheme(themeId)
+        }
         clappAppInstance = this
         ClapSoundManager.init()
     }
