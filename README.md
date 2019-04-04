@@ -27,6 +27,3 @@ Source	https://github.com/emojione/emojione/tree/2.2.7
 Author	https://github.com/emojione/emojione/graphs/contributors  
 Licence https://creativecommons.org/licenses/by-sa/4.0/deed.en  
 
-# Todo: 
-- Share app button
-
