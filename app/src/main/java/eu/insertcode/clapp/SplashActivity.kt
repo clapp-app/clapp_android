@@ -16,19 +16,45 @@
 
 package eu.insertcode.clapp
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
 
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hasShownOnboarding", false))
+        if (intent.data?.pathSegments?.first() == "w")
+            openInBrowser(intent.data!!)
+        else if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hasShownOnboarding", false))
             startActivity(Intent(this, MainActivity::class.java))
         else startActivity(Intent(this, OnBoardingActivity::class.java))
         finish()
+    }
+
+    private fun openInBrowser(uri: Uri) {
+        setDeepLinkingState(PackageManager.COMPONENT_ENABLED_STATE_DISABLED)
+
+        CustomTabsIntent.Builder()
+                .setShowTitle(true)
+                .setInstantAppsEnabled(false)
+                .build()
+                .launchUrl(this, uri)
+
+        setDeepLinkingState(PackageManager.COMPONENT_ENABLED_STATE_ENABLED)
+    }
+
+    private fun setDeepLinkingState(state: Int) {
+        applicationContext.packageManager.setComponentEnabledSetting(
+                ComponentName(packageName, "$packageName.SplashActivity"),
+                state,
+                PackageManager.DONT_KILL_APP
+        )
     }
 }
