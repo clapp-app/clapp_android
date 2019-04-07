@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.media.AudioManager
+import android.net.Uri
 import android.os.*
 import android.view.Menu
 import android.view.MenuItem
@@ -34,6 +35,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import eu.insertcode.clapp.extensions.SimpleOnSeekBarChangeListener
 import eu.insertcode.clapp.extensions.getColorCompat
+import eu.insertcode.clapp.extensions.openInBrowser
 import eu.insertcode.clapp.extensions.tintMenuItemsCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -139,6 +141,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_theme_light -> true.also {
                     clappAppInstance.setCurrentTheme(R.style.AppTheme_Light, false)
                     recreate()
+                }
+                R.id.menu_privacy_policy -> true.also {
+                    openInBrowser(Uri.parse(getString(R.string.url_privacy_policy)))
                 }
                 else -> super.onOptionsItemSelected(item)
             }

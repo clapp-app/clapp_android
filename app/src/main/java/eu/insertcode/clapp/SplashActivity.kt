@@ -16,14 +16,11 @@
 
 package eu.insertcode.clapp
 
-import android.content.ComponentName
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.browser.customtabs.CustomTabsIntent
+import eu.insertcode.clapp.extensions.openInBrowser
 
 class SplashActivity : AppCompatActivity() {
 
@@ -36,25 +33,5 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         else startActivity(Intent(this, OnBoardingActivity::class.java))
         finish()
-    }
-
-    private fun openInBrowser(uri: Uri) {
-        setDeepLinkingState(PackageManager.COMPONENT_ENABLED_STATE_DISABLED)
-
-        CustomTabsIntent.Builder()
-                .setShowTitle(true)
-                .setInstantAppsEnabled(false)
-                .build()
-                .launchUrl(this, uri)
-
-        setDeepLinkingState(PackageManager.COMPONENT_ENABLED_STATE_ENABLED)
-    }
-
-    private fun setDeepLinkingState(state: Int) {
-        applicationContext.packageManager.setComponentEnabledSetting(
-                ComponentName(packageName, "$packageName.SplashActivity"),
-                state,
-                PackageManager.DONT_KILL_APP
-        )
     }
 }

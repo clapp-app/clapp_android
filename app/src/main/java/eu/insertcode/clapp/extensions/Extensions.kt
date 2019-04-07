@@ -16,10 +16,15 @@
 
 package eu.insertcode.clapp.extensions
 
+import android.app.Activity
+import android.content.ComponentName
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.view.Menu
 import android.widget.SeekBar
 import androidx.annotation.ColorRes
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import eu.insertcode.clapp.R
@@ -55,4 +60,25 @@ open class SimpleOnSeekBarChangeListener : SeekBar.OnSeekBarChangeListener {
     override fun onStopTrackingTouch(seekBar: SeekBar) {
     }
 
+}
+
+
+fun Activity.openInBrowser(uri: Uri) {
+    setDeepLinkingState(PackageManager.COMPONENT_ENABLED_STATE_DISABLED)
+
+    CustomTabsIntent.Builder()
+            .setShowTitle(true)
+            .setInstantAppsEnabled(false)
+            .build()
+            .launchUrl(this, uri)
+
+    setDeepLinkingState(PackageManager.COMPONENT_ENABLED_STATE_ENABLED)
+}
+
+private fun Activity.setDeepLinkingState(state: Int) {
+    applicationContext.packageManager.setComponentEnabledSetting(
+            ComponentName(packageName, "$packageName.SplashActivity"),
+            state,
+            PackageManager.DONT_KILL_APP
+    )
 }
