@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (intent.data?.pathSegments?.first() == "w")
+        if (intent.data?.pathSegments?.firstOrNull() == "w")
             openInBrowser(intent.data!!)
         else if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hasShownOnboarding", false))
             startActivity(Intent(this, MainActivity::class.java))
