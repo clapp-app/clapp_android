@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "676240839999-t9ov4r2it27gl5smm2jh6albhsslrke9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "eu.insertcode.clapp",
+            "certificate_hash": "65ee8f88bc0fe2da11d096c22f5f9eca5e9b54d9"
+          }
+        },
+        {
           "client_id": "676240839999-vmpja9u564qe7mkd8jos24nqcua59vnt.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -25,15 +33,42 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676240839999-vmpja9u564qe7mkd8jos24nqcua59vnt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676240839999:android:b5ae7923b93222c2",
+        "android_client_info": {
+          "package_name": "eu.insertcode.clapp.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676240839999-vmpja9u564qe7mkd8jos24nqcua59vnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBItKMYGkuM_xrh8T7WWI8QEgASvnS2ISM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676240839999-vmpja9u564qe7mkd8jos24nqcua59vnt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
