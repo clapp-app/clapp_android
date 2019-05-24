@@ -27,8 +27,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 'Q'
 
-        versionCode 17
-        versionName "1.4.1"
+        versionCode 18
+        versionName "1.5"
     }
 
     buildTypes {
