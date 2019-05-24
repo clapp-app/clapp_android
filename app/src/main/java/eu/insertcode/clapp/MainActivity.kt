@@ -20,6 +20,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.media.AudioManager
 import android.net.Uri
 import android.os.*
@@ -82,11 +86,7 @@ class MainActivity : AppCompatActivity() {
 
             @Suppress("DEPRECATION")
             fun clap() {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
-                else vibrator.vibrate(50)
-                ClapSoundManager.playClap()
-                button_clap.startAnimation(scaleAnimation.apply { duration = clapSpeed })
+                performClap()
 
                 if (lifecycle.currentState == Lifecycle.State.RESUMED) {
                     handler?.postDelayed(r, clapSpeed)
@@ -97,6 +97,46 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+
+        val sensorService = getSystemService(SENSOR_SERVICE) as SensorManager
+        sensorService.registerListener(object : SensorEventListener {
+            /*
+             * The gForce that is necessary to register as shake.
+             * Must be greater than 1G (one earth gravity unit).
+             * You can install "G-Force", by Blake La Pierre
+             * from the Google Play Store and run it to see how
+             *  many G's it takes to register a shake
+             */
+            private val SHAKE_THRESHOLD_GRAVITY = 2.7f
+            private var shakeTimestamp = 0L
+
+            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+            }
+
+            override fun onSensorChanged(event: SensorEvent) {
+                val x = event.values[0]
+                val y = event.values[1]
+                val z = event.values[2]
+
+                val gX = x / SensorManager.GRAVITY_EARTH
+                val gY = y / SensorManager.GRAVITY_EARTH
+                val gZ = z / SensorManager.GRAVITY_EARTH
+
+                // gForce will be close to 1 when there is no movement.
+                val gForce = Math.sqrt((gX * gX + gY * gY + gZ * gZ).toDouble()).toFloat()
+
+                if (gForce > SHAKE_THRESHOLD_GRAVITY) {
+                    val now = System.currentTimeMillis()
+                    // ignore shake events too close to each other (500ms)
+                    if (shakeTimestamp + clapSpeed > now)
+                        return
+
+                    shakeTimestamp = now
+
+                    performClap()
+                }
+            }
+        }, sensorService.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME)
     }
 
     val scaleAnimation = AnimationSet(true).apply {
@@ -113,6 +153,14 @@ class MainActivity : AppCompatActivity() {
 
         addAnimation(growAnimation)
         addAnimation(shrinkAnimation)
+    }
+
+    fun performClap() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
+        else vibrator.vibrate(50)
+        ClapSoundManager.playClap()
+        button_clap.startAnimation(scaleAnimation.apply { duration = clapSpeed })
     }
 
 
