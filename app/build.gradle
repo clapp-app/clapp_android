@@ -20,15 +20,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 'android-Q'
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "eu.insertcode.clapp"
         minSdkVersion 16
-        targetSdkVersion 'Q'
+        targetSdkVersion 28
 
-        versionCode 18
-        versionName "1.5"
+        versionCode 19
+        versionName "1.5.1"
     }
 
     buildTypes {

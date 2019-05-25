@@ -114,26 +114,28 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSensorChanged(event: SensorEvent) {
-                val x = event.values[0]
-                val y = event.values[1]
-                val z = event.values[2]
+                if (lifecycle.currentState == Lifecycle.State.RESUMED) {
+                    val x = event.values[0]
+                    val y = event.values[1]
+                    val z = event.values[2]
 
-                val gX = x / SensorManager.GRAVITY_EARTH
-                val gY = y / SensorManager.GRAVITY_EARTH
-                val gZ = z / SensorManager.GRAVITY_EARTH
+                    val gX = x / SensorManager.GRAVITY_EARTH
+                    val gY = y / SensorManager.GRAVITY_EARTH
+                    val gZ = z / SensorManager.GRAVITY_EARTH
 
-                // gForce will be close to 1 when there is no movement.
-                val gForce = Math.sqrt((gX * gX + gY * gY + gZ * gZ).toDouble()).toFloat()
+                    // gForce will be close to 1 when there is no movement.
+                    val gForce = Math.sqrt((gX * gX + gY * gY + gZ * gZ).toDouble()).toFloat()
 
-                if (gForce > SHAKE_THRESHOLD_GRAVITY) {
-                    val now = System.currentTimeMillis()
-                    // ignore shake events too close to each other (500ms)
-                    if (shakeTimestamp + clapSpeed > now)
-                        return
+                    if (gForce > SHAKE_THRESHOLD_GRAVITY) {
+                        val now = System.currentTimeMillis()
+                        // ignore shake events too close to each other (500ms)
+                        if (shakeTimestamp + clapSpeed > now)
+                            return
 
-                    shakeTimestamp = now
+                        shakeTimestamp = now
 
-                    performClap()
+                        performClap()
+                    }
                 }
             }
         }, sensorService.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME)
