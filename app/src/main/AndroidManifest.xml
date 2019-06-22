@@ -38,7 +38,6 @@
         android:theme="@style/AppTheme.Light"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         >
-        <activity android:name=".OnBoardingActivity" />
         <activity
             android:name=".MainActivity"
             android:label=""

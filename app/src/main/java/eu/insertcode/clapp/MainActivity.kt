@@ -175,7 +175,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.menu_share -> true.also {
                     val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                        putExtra(Intent.EXTRA_TEXT, getString(R.string.str_share, getString(R.string.str_onboarding_description)))
+                        putExtra(Intent.EXTRA_TEXT, getString(R.string.str_share))
                         type = "text/plain"
                     }
                     startActivity(Intent.createChooser(shareIntent, getString(R.string.menu_share)))

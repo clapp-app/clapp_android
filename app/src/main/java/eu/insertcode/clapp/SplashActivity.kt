@@ -18,7 +18,6 @@ package eu.insertcode.clapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import eu.insertcode.clapp.extensions.openInBrowser
 
@@ -29,9 +28,7 @@ class SplashActivity : AppCompatActivity() {
 
         if (intent.data?.pathSegments?.firstOrNull() == "w")
             openInBrowser(intent.data!!)
-        else if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hasShownOnboarding", false))
-            startActivity(Intent(this, MainActivity::class.java))
-        else startActivity(Intent(this, OnBoardingActivity::class.java))
+        else startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 }

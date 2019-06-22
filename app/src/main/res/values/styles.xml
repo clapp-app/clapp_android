@@ -49,29 +49,6 @@
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
 
 
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
-        <item name="colorOnSecondary">@color/colorOnSecondary</item>
-
-        <item name="colorAccent">@color/black</item>
-        <item name="colorPrimaryDark">@color/black</item>
-
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
-    </style>
-
-    <style
-        name="AppTheme.Black"
-        parent="Theme.MaterialComponents.NoActionBar"
-        tools:ignore="NewApi"
-        >
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorOnPrimary">@color/colorOnPrimary</item>
-
-
         <item name="colorSecondary">#ff3C3C3C</item>
         <item name="colorSecondaryVariant">#ff3C3C3C</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
