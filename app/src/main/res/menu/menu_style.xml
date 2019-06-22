@@ -40,12 +40,6 @@
         />
 
     <item
-        android:id="@+id/menu_theme_black"
-        android:title="@string/menu_black"
-        app:showAsAction="never"
-        />
-
-    <item
         android:id="@+id/menu_privacy_policy"
         android:title="@string/menu_privacy_policy"
         app:showAsAction="never"

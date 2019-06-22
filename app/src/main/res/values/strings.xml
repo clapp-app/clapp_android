@@ -34,7 +34,6 @@
     <!-- Menu -->
     <string name="menu_light">Light mode</string>
     <string name="menu_dark">Dark mode</string>
-    <string name="menu_black">Black mode</string>
     <string name="menu_share">Share</string>
     <string name="menu_privacy_policy">Privacy Policy</string>
 
