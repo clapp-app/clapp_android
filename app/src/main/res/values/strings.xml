@@ -18,7 +18,7 @@
     <string name="app_name">Clapp</string>
 
     <!-- Strings -->
-    <string name="str_tap_to_clap">Tap or hold to clap!</string>
+    <string name="str_tap_to_clap">Hold or shake to clap!</string>
     <string name="str_share">
         You are at a concert, and people are clapping. \n
         However, you have a drink in your hand so you only have one hand free, and you can\'t clap properly.  \n
