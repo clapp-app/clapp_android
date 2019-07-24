@@ -11,10 +11,12 @@ All you have to do is simply grab your phone, unlock it, open Clapp, turn up the
 [Try it out yourself!](https://play.google.com/store/apps/details?id=eu.insertcode.clapp)
 
 # Features:
-- Tap or hold to clap! 👏
+- Hold or shake to clap! 👏
+- Change clap speed! 🏎
 - Dark mode! 🌚
 - Light mode! 🌝
 - Haptic feedback! ⭐️
+- Clapping Widget! 📦
 
 # Privacy: 
 Clapp only collects anonymous crash and performance information to improve the app.
