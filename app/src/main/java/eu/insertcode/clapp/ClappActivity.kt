@@ -44,7 +44,7 @@ import eu.insertcode.clapp.extensions.tintMenuItemsCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class ClappActivity : AppCompatActivity() {
     private val vibrator by lazy { this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator }
 
     private var clapSpeed = 200L

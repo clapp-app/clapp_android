@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
 
         if (intent.data?.pathSegments?.firstOrNull() == "w")
             openInBrowser(intent.data!!)
-        else startActivity(Intent(this, MainActivity::class.java))
+        else startActivity(Intent(this, ClappActivity::class.java))
         finish()
     }
 }
