@@ -51,11 +51,5 @@ class ClappApp : Application() {
             setTheme(themeId)
         }
         clappAppInstance = this
-        ClapSoundManager.init()
-    }
-
-    override fun onTerminate() {
-        super.onTerminate()
-        ClapSoundManager.terminate()
     }
 }

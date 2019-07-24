@@ -37,6 +37,8 @@
         android:theme="@style/AppTheme.Light"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         >
+        <service android:name=".ClappService" />
+
         <receiver android:name="ClappWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
