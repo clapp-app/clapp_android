@@ -17,10 +17,8 @@
 package eu.insertcode.clapp
 
 import android.annotation.SuppressLint
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.ServiceConnection
 import android.graphics.PorterDuff
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -50,34 +48,6 @@ class ClappActivity : AppCompatActivity() {
     private val vibrator by lazy { this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator }
 
     private var clapSpeed = 200L
-
-    private lateinit var clappService: ClappService
-    private var bound = false
-
-    private val connection = object : ServiceConnection {
-        override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            val binder = service as ClappService.LocalBinder
-            clappService = binder.getService()
-            bound = true
-        }
-
-        override fun onServiceDisconnected(arg0: ComponentName) {
-            bound = false
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Intent(this, ClappService::class.java).also { intent ->
-            bindService(intent, connection, Context.BIND_AUTO_CREATE)
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        unbindService(connection)
-        bound = false
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(clappAppInstance.themeId)
@@ -192,7 +162,7 @@ class ClappActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
         else vibrator.vibrate(50)
-        if (bound) clappService.playClap()
+        ClapSoundManager.playClap()
         button_clap.startAnimation(scaleAnimation.apply { duration = clapSpeed })
     }
 

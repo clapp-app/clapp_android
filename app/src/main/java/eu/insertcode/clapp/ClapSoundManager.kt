@@ -16,20 +16,16 @@
 
 package eu.insertcode.clapp
 
-import android.app.Service
 import android.content.Context
-import android.content.Intent
 import android.media.AudioManager
 import android.media.SoundPool
-import android.os.Binder
-import android.os.IBinder
+
 
 /**
- * Created by maartendegoede on 2019-07-24.
+ * Created by maartendegoede on 2019-03-31.
  * Copyright © 2019 insertCode.eu. All rights reserved.
  */
-class ClappService : Service() {
-    private val binder = LocalBinder()
+object ClapSoundManager {
 
     private val claps = arrayListOf(
         R.raw.clapp01, R.raw.clapp21, R.raw.clapp41,
@@ -62,6 +58,12 @@ class ClappService : Service() {
         claps.forEach { playableClaps.add(load(clappAppInstance, it, 1)) }
     }
 
+    fun init() {}
+
+    fun terminate() {
+        soundPool.release()
+    }
+
     fun playClap() {
         if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0) {
             audioManager.setStreamVolume(
@@ -78,18 +80,5 @@ class ClappService : Service() {
             0, // no loop
             1f // normal playback rate
         )
-    }
-
-    override fun onBind(intent: Intent): IBinder {
-        return binder
-    }
-
-    override fun onDestroy() {
-        soundPool.release()
-    }
-
-
-    inner class LocalBinder : Binder() {
-        fun getService() = this@ClappService
     }
 }

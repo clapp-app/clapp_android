@@ -16,13 +16,16 @@
 
 package eu.insertcode.clapp
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.content.Intent
 import android.widget.RemoteViews
 
 
 class ClappWidgetProvider : AppWidgetProvider() {
+    private val actionClapp = "ACTION_CLAPP"
 
     override fun onUpdate(
         context: Context,
@@ -33,10 +36,27 @@ class ClappWidgetProvider : AppWidgetProvider() {
             val views = RemoteViews(
                 context.packageName,
                 R.layout.clappwidget
-            )
+            ).apply {
+                setOnClickPendingIntent(
+                    R.id.button_clap,
+                    PendingIntent.getBroadcast(
+                        context,
+                        0,
+                        Intent(context, ClappWidgetProvider::class.java).also {
+                            it.action = actionClapp
+                        },
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                    )
+                )
+            }
 
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
     }
 
+    override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action == actionClapp) {
+            ClapSoundManager.playClap()
+        } else super.onReceive(context, intent)
+    }
 }
