@@ -158,6 +158,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun performClap() {
+        @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
         else vibrator.vibrate(50)
