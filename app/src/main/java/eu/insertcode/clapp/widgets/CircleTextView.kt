@@ -1,5 +1,5 @@
 /*
- *    Copyright 2019 Maarten de Goede
+ *    Copyright 2020 Maarten de Goede
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import eu.insertcode.clapp.R
+import kotlin.math.max
+import kotlin.math.min
 
 
 /**
@@ -47,7 +49,7 @@ class CircleTextView(
         }
     var textRadius = 0
         set(value) {
-            field = Math.min(360, Math.max(-360, value))
+            field = min(360, max(-360, value))
             invalidate()
         }
 

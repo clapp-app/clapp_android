@@ -1,5 +1,5 @@
 <!--
-  ~    Copyright 2019 Maarten de Goede
+  ~    Copyright 2020 Maarten de Goede
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -19,16 +19,7 @@
 
     <!-- Strings -->
     <string name="str_tap_to_clap">Hold or shake to clap!</string>
-    <string name="str_share">
-        You are at a concert, and people are clapping. \n
-        However, you have a drink in your hand so you only have one hand free, and you can\'t clap properly.  \n
-        \n
-        No more! With Clapp, you can clap with only one hand! All you have to do is simply grab your phone, unlock it, open Clapp, turn up the volume and tap a button! \n
-        \n
-        Clapping has never been this easy! \n
-        \n
-        https://clapp.page.link/download</string>
-    <string name="str_onboarding_title">Has this ever happened to you:</string>
+    <string name="str_share">Clapp with your phone!\nhttps://clapp.page.link/download</string>
     <string name="str_clap_speed">Clap speed:</string>
 
     <!-- Menu -->
