@@ -1,5 +1,5 @@
 /*
- *    Copyright 2019 Maarten de Goede
+ *    Copyright 2020 Maarten de Goede
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -169,6 +169,8 @@ class ClappActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu) = true.also {
         menuInflater.inflate(R.menu.menu_style, menu)
+        menu.findItem(R.id.menu_theme_light).isVisible = clappAppInstance.isDarkTheme
+        menu.findItem(R.id.menu_theme_dark).isVisible = !clappAppInstance.isDarkTheme
         menu.tintMenuItemsCompat()
     }
 

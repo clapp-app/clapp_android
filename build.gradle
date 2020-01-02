@@ -1,5 +1,5 @@
 /*
- *    Copyright 2019 Maarten de Goede
+ *    Copyright 2020 Maarten de Goede
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.0-rc01'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.0'
-        classpath 'io.fabric.tools:gradle:1.26.1'
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'io.fabric.tools:gradle:1.31.0'
         classpath 'com.google.firebase:firebase-plugins:2.0.0'
     }
 }
