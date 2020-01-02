@@ -54,6 +54,7 @@ class ClappActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        ClapSoundManager.loadAll()
 
         volumeControlStream = AudioManager.STREAM_MUSIC
 

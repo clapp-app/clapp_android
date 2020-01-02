@@ -1,5 +1,5 @@
 /*
- *    Copyright 2019 Maarten de Goede
+ *    Copyright 2020 Maarten de Goede
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ class ClappWidgetProvider : AppWidgetProvider() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == actionClapp) {
-            ClapSoundManager.playClap()
+            ClapSoundManager.playClap(fromWidget = true)
         } else super.onReceive(context, intent)
     }
 }
