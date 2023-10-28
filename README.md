@@ -23,7 +23,7 @@ Clapp only collects anonymous crash and performance information to improve the a
 
 # Copyright notice
 Used copyrighted materials:  
-**EmojiOne 1F44F**  
+**EmojiOne 1F44F, 1F351**  
 Description: A colored Emoji from emojione project  
 Source	https://github.com/emojione/emojione/tree/v2.2.7  
 Author	https://github.com/emojione/emojione/graphs/contributors  
