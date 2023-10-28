@@ -33,8 +33,8 @@ android {
         minSdk = 19
         targetSdk = 34
 
-        versionCode = 23
-        versionName = "onePointSixPointTwo"
+        versionCode = 24
+        versionName = "onePointSixPointThree"
 
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
