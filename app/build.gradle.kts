@@ -31,7 +31,7 @@ android {
         applicationId = "eu.insertcode.clapp"
 
         minSdk = 19
-        targetSdk = 28
+        targetSdk = 34
 
         versionCode = 23
         versionName = "onePointSixPointTwo"

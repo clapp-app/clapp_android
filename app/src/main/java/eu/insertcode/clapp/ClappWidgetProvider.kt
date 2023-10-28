@@ -1,5 +1,5 @@
 /*
- *    Copyright 2020 Maarten de Goede
+ *    Copyright 2023 Maarten de Goede
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ class ClappWidgetProvider : AppWidgetProvider() {
                         Intent(context, ClappWidgetProvider::class.java).also {
                             it.action = actionClapp
                         },
-                        PendingIntent.FLAG_UPDATE_CURRENT
+                        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
                 )
             }

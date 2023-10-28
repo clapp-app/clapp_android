@@ -38,11 +38,11 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import eu.insertcode.clapp.databinding.ActivityMainBinding
-import kotlin.math.sqrt
 import eu.insertcode.clapp.extensions.SimpleOnSeekBarChangeListener
 import eu.insertcode.clapp.extensions.getColorCompat
 import eu.insertcode.clapp.extensions.openInBrowser
 import eu.insertcode.clapp.extensions.tintMenuItemsCompat
+import kotlin.math.sqrt
 
 
 class ClappActivity : AppCompatActivity() {
@@ -80,7 +80,7 @@ class ClappActivity : AppCompatActivity() {
             override fun onTouch(v: View, event: MotionEvent): Boolean {
                 return when (event.action) {
                     MotionEvent.ACTION_DOWN -> true.also {
-                        handler = handler ?: Handler().apply { post(r) }
+                        handler = (handler ?: Handler(Looper.getMainLooper())).apply { post(r) }
                     }
 
                     MotionEvent.ACTION_UP -> true.also {
@@ -92,7 +92,6 @@ class ClappActivity : AppCompatActivity() {
                 }
             }
 
-            @Suppress("DEPRECATION")
             fun clap() {
                 performClap()
 
