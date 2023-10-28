@@ -38,6 +38,7 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import eu.insertcode.clapp.databinding.ActivityMainBinding
+import kotlin.math.sqrt
 import eu.insertcode.clapp.extensions.SimpleOnSeekBarChangeListener
 import eu.insertcode.clapp.extensions.getColorCompat
 import eu.insertcode.clapp.extensions.openInBrowser
@@ -57,7 +58,6 @@ class ClappActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setContentView(R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
         ClapSoundManager.loadAll()
 
@@ -82,10 +82,12 @@ class ClappActivity : AppCompatActivity() {
                     MotionEvent.ACTION_DOWN -> true.also {
                         handler = handler ?: Handler().apply { post(r) }
                     }
+
                     MotionEvent.ACTION_UP -> true.also {
                         handler?.removeCallbacks(r)
                         handler = null
                     }
+
                     else -> false
                 }
             }
@@ -130,7 +132,7 @@ class ClappActivity : AppCompatActivity() {
                     val gZ = z / SensorManager.GRAVITY_EARTH
 
                     // gForce will be close to 1 when there is no movement.
-                    val gForce = Math.sqrt((gX * gX + gY * gY + gZ * gZ).toDouble()).toFloat()
+                    val gForce = sqrt((gX * gX + gY * gY + gZ * gZ).toDouble()).toFloat()
 
                     if (gForce > SHAKE_THRESHOLD_GRAVITY) {
                         val now = System.currentTimeMillis()
@@ -147,7 +149,7 @@ class ClappActivity : AppCompatActivity() {
         }, sensorService.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME)
     }
 
-    val scaleAnimation = AnimationSet(true).apply {
+    private val scaleAnimation = AnimationSet(true).apply {
         val fromScale = 1f
         val toScale = 2f
         val growAnimation = ScaleAnimation(
@@ -189,17 +191,21 @@ class ClappActivity : AppCompatActivity() {
                     }
                     startActivity(Intent.createChooser(shareIntent, getString(R.string.menu_share)))
                 }
+
                 R.id.menu_theme_dark -> true.also {
                     clappAppInstance.setCurrentTheme(R.style.AppTheme_Dark, true)
                     recreate()
                 }
+
                 R.id.menu_theme_light -> true.also {
                     clappAppInstance.setCurrentTheme(R.style.AppTheme_Light, false)
                     recreate()
                 }
+
                 R.id.menu_privacy_policy -> true.also {
                     openInBrowser(Uri.parse(getString(R.string.url_privacy_policy)))
                 }
+
                 else -> super.onOptionsItemSelected(item)
             }
 }
