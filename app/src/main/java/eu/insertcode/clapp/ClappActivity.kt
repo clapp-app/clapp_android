@@ -1,5 +1,5 @@
 /*
- *    Copyright 2020 Maarten de Goede
+ *    Copyright 2023 Maarten de Goede
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -37,37 +37,42 @@ import android.view.animation.ScaleAnimation
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
+import eu.insertcode.clapp.databinding.ActivityMainBinding
 import eu.insertcode.clapp.extensions.SimpleOnSeekBarChangeListener
 import eu.insertcode.clapp.extensions.getColorCompat
 import eu.insertcode.clapp.extensions.openInBrowser
 import eu.insertcode.clapp.extensions.tintMenuItemsCompat
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class ClappActivity : AppCompatActivity() {
-    private val vibrator by lazy { this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator }
+    private lateinit var binding: ActivityMainBinding
 
+    private val vibrator by lazy { this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator }
     private var clapSpeed = 200L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(clappAppInstance.themeId)
         super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         ClapSoundManager.loadAll()
 
         volumeControlStream = AudioManager.STREAM_MUSIC
 
-        seekbar.progressDrawable.setColorFilter(getColorCompat(R.color.colorSecondary), PorterDuff.Mode.SRC_IN)
-        seekbar.thumb.setColorFilter(getColorCompat(R.color.colorSecondary), PorterDuff.Mode.SRC_IN)
-        seekbar.setOnSeekBarChangeListener(object : SimpleOnSeekBarChangeListener() {
+        binding.seekbar.progressDrawable.setColorFilter(getColorCompat(R.color.colorSecondary), PorterDuff.Mode.SRC_IN)
+        binding.seekbar.thumb.setColorFilter(getColorCompat(R.color.colorSecondary), PorterDuff.Mode.SRC_IN)
+        binding.seekbar.setOnSeekBarChangeListener(object : SimpleOnSeekBarChangeListener() {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 // (progress-max)*-1+min, calculation explained in view
-                clapSpeed = ((progress - seekbar.max) * -1 + 100).toLong()
+                clapSpeed = ((progress - binding.seekbar.max) * -1 + 100).toLong()
             }
         })
 
-        button_clap.setOnTouchListener(object : View.OnTouchListener {
+        binding.buttonClap.setOnTouchListener(object : View.OnTouchListener {
             private var handler: Handler? = null
             private val r = Runnable { clap() }
 
@@ -164,7 +169,7 @@ class ClappActivity : AppCompatActivity() {
             vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
         else vibrator.vibrate(50)
         ClapSoundManager.playClap()
-        button_clap.startAnimation(scaleAnimation.apply { duration = clapSpeed })
+        binding.buttonClap.startAnimation(scaleAnimation.apply { duration = clapSpeed })
     }
 
 

@@ -1,5 +1,5 @@
 /*
- *    Copyright 2020 Maarten de Goede
+ *    Copyright 2023 Maarten de Goede
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -17,32 +17,28 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.61'
     repositories {
         google()
-        jcenter()
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
-
+        mavenCentral()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.0-rc01'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.3'
-        classpath 'io.fabric.tools:gradle:1.31.0'
-        classpath 'com.google.firebase:firebase-plugins:2.0.0'
+        classpath("com.android.tools.build:gradle:8.0.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10")
+
+        classpath("com.google.gms:google-services:4.4.0")
+        classpath("com.google.firebase:perf-plugin:1.4.2")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.9")
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
-
+        mavenCentral()
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register("clean", Delete::class.java) {
+    delete(rootProject.buildDir)
 }
