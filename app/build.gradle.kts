@@ -70,18 +70,19 @@ android {
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.browser:browser:1.6.0")
+    implementation(AndroidX.core.ktx)
+    implementation(AndroidX.multidex)
+    implementation(AndroidX.appCompat)
+    implementation(AndroidX.constraintLayout)
+    implementation(AndroidX.browser)
 
-    implementation("com.google.android.material:material:1.10.0")
+    implementation(Google.android.material)
 
     // Firebase
-    implementation("com.google.firebase:firebase-core:21.1.1")
-    implementation("com.google.firebase:firebase-perf:20.5.0")
-    implementation("com.google.firebase:firebase-appindexing:20.0.0")
-    implementation("com.google.firebase:firebase-crashlytics:18.5.0")
-    implementation("com.google.firebase:firebase-analytics:21.4.0")
+    implementation("com.google.firebase:firebase-core:_")
+    implementation("com.google.firebase:firebase-perf:_")
+    implementation("com.google.firebase:firebase-appindexing:_")
+    implementation("com.google.firebase:firebase-crashlytics:_")
+    implementation("com.google.firebase:firebase-analytics:_")
 }
 

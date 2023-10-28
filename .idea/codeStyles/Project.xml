@@ -61,7 +61,6 @@
     <XML>
       <option name="XML_KEEP_LINE_BREAKS" value="true" />
       <option name="XML_WHITE_SPACE_AROUND_CDATA" value="2" />
-      <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
     </XML>
     <codeStyleSettings language="JAVA">
       <arrangement>
