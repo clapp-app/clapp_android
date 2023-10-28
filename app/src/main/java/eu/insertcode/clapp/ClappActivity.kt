@@ -48,7 +48,12 @@ import kotlin.math.sqrt
 class ClappActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val vibrator by lazy { this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator }
+    private val vibrator by lazy {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+            (this.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager)
+                    .defaultVibrator
+        else this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    }
     private var clapSpeed = 200L
 
     override fun onCreate(savedInstanceState: Bundle?) {
