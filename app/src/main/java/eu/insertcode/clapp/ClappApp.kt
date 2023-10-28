@@ -29,8 +29,13 @@ import androidx.annotation.StyleRes
 lateinit var clappAppInstance: ClappApp
 
 class ClappApp : Application() {
+    enum class IconMode {
+        Clapp, Peach
+    }
+
     var themeId = R.style.AppTheme_Light
     var isDarkTheme = false
+    var iconMode = IconMode.Clapp
 
     fun setCurrentTheme(@StyleRes theme: Int, isDark: Boolean) {
         themeId = theme
@@ -43,11 +48,20 @@ class ClappApp : Application() {
                 .apply()
     }
 
+    fun setCurrentIconMode(iconMode: IconMode) {
+        this.iconMode = iconMode
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .edit()
+                .putString("iconMode", iconMode.name)
+                .apply()
+    }
+
     override fun onCreate() {
         super.onCreate()
         PreferenceManager.getDefaultSharedPreferences(this).apply {
             themeId = getInt("defaultTheme", themeId)
             isDarkTheme = getBoolean("isDarkTheme", isDarkTheme)
+            iconMode = IconMode.entries.find { it.name == getString("iconMode", null) } ?: iconMode
             setTheme(themeId)
         }
         clappAppInstance = this

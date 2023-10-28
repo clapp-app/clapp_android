@@ -40,6 +40,12 @@
         />
 
     <item
+        android:id="@+id/menu_toggle_icon_mode"
+        android:title="@string/menu_toggle_icon_mode"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/menu_privacy_policy"
         android:title="@string/menu_privacy_policy"
         app:showAsAction="never"

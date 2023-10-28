@@ -26,6 +26,7 @@
     <string name="menu_light">Light mode</string>
     <string name="menu_dark">Dark mode</string>
     <string name="menu_share">Share</string>
+    <string name="menu_toggle_icon_mode">Toggle icon mode</string>
     <string name="menu_privacy_policy">Privacy Policy</string>
 
     <!-- Actions -->

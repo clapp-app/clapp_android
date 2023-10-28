@@ -36,7 +36,9 @@ import android.view.animation.AnimationSet
 import android.view.animation.ScaleAnimation
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
+import eu.insertcode.clapp.ClappApp.IconMode
 import eu.insertcode.clapp.databinding.ActivityMainBinding
 import eu.insertcode.clapp.extensions.SimpleOnSeekBarChangeListener
 import eu.insertcode.clapp.extensions.getColorCompat
@@ -65,6 +67,7 @@ class ClappActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         ClapSoundManager.loadAll()
+        setIcon()
 
         volumeControlStream = AudioManager.STREAM_MUSIC
 
@@ -178,6 +181,14 @@ class ClappActivity : AppCompatActivity() {
         binding.buttonClap.startAnimation(scaleAnimation.apply { duration = clapSpeed })
     }
 
+    private fun setIcon() {
+        val drawable = ContextCompat.getDrawable(this, when (clappAppInstance.iconMode) {
+            IconMode.Clapp -> R.drawable.ic_clapp
+            IconMode.Peach -> R.drawable.ic_peach
+        })
+        binding.buttonClap.setImageDrawable(drawable)
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu) = true.also {
         menuInflater.inflate(R.menu.menu_style, menu)
@@ -204,6 +215,13 @@ class ClappActivity : AppCompatActivity() {
                 R.id.menu_theme_light -> true.also {
                     clappAppInstance.setCurrentTheme(R.style.AppTheme_Light, false)
                     recreate()
+                }
+
+                R.id.menu_toggle_icon_mode -> true.also {
+                    if (clappAppInstance.iconMode == IconMode.Clapp)
+                        clappAppInstance.setCurrentIconMode(IconMode.Peach)
+                    else clappAppInstance.setCurrentIconMode(IconMode.Clapp)
+                    setIcon()
                 }
 
                 R.id.menu_privacy_policy -> true.also {
