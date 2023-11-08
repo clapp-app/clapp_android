@@ -174,7 +174,9 @@ class ClappActivity : AppCompatActivity() {
 
     fun performClap() {
         @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+            vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK))
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             vibrator.vibrate(VibrationEffect.createOneShot(10, 255))
         else vibrator.vibrate(50)
         ClapSoundManager.playClap()
